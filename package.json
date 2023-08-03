@@ -1,0 +1,23 @@
+{
+  "name": "forkify",
+  "version": "1.0.0",
+  "description": "recipe app",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coblexx/Forkify.git"
+  },
+  "author": "Coblexx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Coblexx/Forkify/issues"
+  },
+  "homepage": "https://github.com/Coblexx/Forkify#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.9.3",
+    "parcel": "^2.9.3"
+  }
+}
