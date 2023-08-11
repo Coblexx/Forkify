@@ -5,7 +5,7 @@ import * as model from './model.js';
 import recipeView from './views/recipeView.js';
 import searchView from './views/searchView.js';
 import resultsView from './views/resultsView.js';
-// import { TIMEOUT_SEC } from './config.js';
+import paginationView from './views/paginationView.js';
 
 ///////////////////////////////////////
 
@@ -26,7 +26,6 @@ const controlRecipes = async function () {
     recipeView.renderError();
   }
 };
-controlRecipes();
 
 const controlSearchResults = async function () {
   try {
@@ -37,15 +36,26 @@ const controlSearchResults = async function () {
 
     await model.loadSearchResults(query);
 
-    resultsView.render(model.state.search.results);
+    // rendering search results
+    resultsView.render(model.getSearchResultsPage());
+
+    // render initial pagination buttons
+    paginationView.render(model.state.search);
   } catch (error) {
     console.error(error);
   }
 };
-controlSearchResults();
+
+const controlPagination = function (goToPage) {
+  // RENDERING NEW RESULT
+  resultsView.render(model.getSearchResultsPage(goToPage));
+  // render NEW pagination buttons
+  paginationView.render(model.state.search);
+};
 
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 init();
